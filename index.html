@@ -1,21 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <title>Peduli Kalimantan — Bantuan Kebakaran</title>
+  <meta name="theme-color" content="#08795b">
+  <title>Kalimantan Peduli — Donasi Kemanusiaan</title>
 
   <meta
     name="description"
-    content="Bersama membantu masyarakat terdampak kebakaran di Kalimantan."
+    content="Bersama membantu masyarakat terdampak kebakaran dan bencana di Kalimantan."
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
@@ -24,747 +25,661 @@
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+<!-- ================= HEADER ================= -->
 
-  <header class="site-header">
+<header class="topbar">
 
-    <div class="container nav-wrap">
+  <a class="brand" href="#beranda" aria-label="Kalimantan Peduli">
 
-      <a href="#beranda" class="brand">
+    <span class="logo">♥</span>
 
-        <span class="brand-icon">♥</span>
+    <span class="brand-name">
+      YAYASAN<br>
+      PEDULI<br>
+      KALIMANTAN
+    </span>
 
-        <span class="brand-text">
-          <strong>PEDULI</strong>
-          <strong>KALIMANTAN</strong>
-        </span>
+  </a>
 
+  <a class="donate-top" href="#donasi">
+    ♥ Donasi<br>
+    Sekarang
+  </a>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+<!-- ================= HERO ================= -->
+
+<section id="beranda" class="hero">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+
+    <div class="eyebrow">
+      ♥ Bersama Kita Menguatkan Sesama
+    </div>
+
+    <h1>
+      Satu Kepedulian Anda,
+      Harapan Besar Bagi Mereka
+    </h1>
+
+    <p>
+      Kalimantan Peduli hadir untuk menyalurkan bantuan kepada masyarakat
+      yang membutuhkan, korban kebakaran dan bencana, anak-anak, keluarga
+      prasejahtera, serta saudara kita yang sedang mengalami kesulitan.
+    </p>
+
+    <div class="hero-actions">
+
+      <a class="btn light" href="#donasi">
+        Mulai Berdonasi ♥
       </a>
 
-      <a href="#donasi" class="header-donate">
-        ♥ Donasi Sekarang
+      <a class="btn outline" href="#program">
+        Lihat Program
       </a>
 
     </div>
 
-  </header>
+  </div>
 
 
-  <main id="beranda">
+  <!-- FUND CARD -->
 
-    <!-- ================= HERO ================= -->
+  <div class="fund-card">
 
-    <section class="hero">
+    <h3>
+      Penggalangan Dana Kemanusiaan
+    </h3>
 
-      <div class="hero-overlay"></div>
+    <div class="fund-total">
+      Rp 145.750.000
+    </div>
 
-      <div class="container hero-content">
+    <div class="progress">
+      <span style="width:49%"></span>
+    </div>
 
-        <span class="eyebrow">
-          ♥ BERSAMA KITA SELAMATKAN KALIMANTAN
-        </span>
+    <div class="fund-meta">
 
-        <h1>
-          Satu Kepedulian Anda,
-          <br>
-          Harapan Besar Bagi Mereka
-        </h1>
+      <span>
+        Terkumpul
+      </span>
 
-        <p>
-          Kebakaran hutan dan lahan berdampak pada keluarga,
-          anak-anak, satwa, serta lingkungan. Mari hadir bersama
-          untuk membantu kebutuhan darurat dan pemulihan
-          masyarakat terdampak.
-        </p>
+      <span>
+        Target Rp 300.000.000
+      </span>
 
-        <div class="hero-actions">
+    </div>
 
-          <a href="#donasi" class="btn btn-light">
-            Mulai Berdonasi ♥
-          </a>
 
-          <a href="#program" class="btn btn-outline">
-            Lihat Program
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= PENGGALANGAN DANA ================= -->
-
-    <section class="fund-section">
-
-      <div class="container">
-
-        <div class="fund-card">
-
-          <p class="fund-label">
-            Penggalangan Dana Kemanusiaan
-          </p>
-
-          <div class="fund-amount">
-            Rp <span id="totalDonation">145.750.000</span>
-          </div>
-
-          <div class="progress-track">
-
-            <div
-              class="progress-bar"
-              id="progressBar"
-            ></div>
-
-          </div>
-
-          <div class="progress-meta">
-
-            <span>
-              Terkumpul
-            </span>
-
-            <span>
-              Target Rp 300.000.000
-            </span>
-
-          </div>
-
-
-          <div class="stats-grid">
-
-            <div class="stat">
-
-              <strong id="donorCount">
-                1.248
-              </strong>
-
-              <span>
-                Donatur
-              </span>
-
-            </div>
-
-
-            <div class="stat">
-
-              <strong>
-                6
-              </strong>
-
-              <span>
-                Program
-              </span>
-
-            </div>
-
-
-            <div class="stat">
-
-              <strong>
-                12
-              </strong>
-
-              <span>
-                Wilayah
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= IMPACT ================= -->
-
-    <section class="impact">
-
-      <div class="container">
-
-        <div class="impact-grid">
-
-          <div class="impact-card">
-
-            <strong>
-              Rp 1,2 M+
-            </strong>
-
-            <span>
-              Total bantuan tersalurkan
-            </span>
-
-          </div>
-
-
-          <div class="impact-card">
-
-            <strong>
-              8.500+
-            </strong>
-
-            <span>
-              Penerima manfaat
-            </span>
-
-          </div>
-
-
-          <div class="impact-card">
-
-            <strong>
-              120+
-            </strong>
-
-            <span>
-              Relawan bergerak
-            </span>
-
-          </div>
-
-
-          <div class="impact-card">
-
-            <strong>
-              24
-            </strong>
-
-            <span>
-              Desa & wilayah penyaluran
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= PROGRAM ================= -->
-
-    <section
-      class="programs section"
-      id="program"
-    >
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <span class="eyebrow green">
-            PROGRAM KEMANUSIAAN
-          </span>
-
-          <h2>
-            Kepedulian yang
-            <br>
-            Kami Salurkan
-          </h2>
-
-          <p>
-            Donasi Anda akan membantu berbagai program
-            tanggap darurat dan pemulihan sesuai kebutuhan
-            masyarakat Kalimantan.
-          </p>
-
-        </div>
-
-
-        <div class="program-grid">
-
-
-          <!-- PROGRAM 1 -->
-
-          <article class="program-card">
-
-            <div class="program-image fire-image"></div>
-
-            <div class="program-body">
-
-              <h3>
-                Bantuan Kebakaran
-              </h3>
-
-              <p>
-                Makanan, air bersih, masker,
-                perlengkapan darurat, dan kebutuhan
-                dasar bagi warga terdampak.
-              </p>
-
-              <a href="#donasi">
-                Bantu Sekarang →
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- PROGRAM 2 -->
-
-          <article class="program-card">
-
-            <div class="program-image family-image"></div>
-
-            <div class="program-body">
-
-              <h3>
-                Peduli Anak & Keluarga
-              </h3>
-
-              <p>
-                Mendukung kebutuhan pangan,
-                kesehatan, pendidikan, dan kehidupan
-                keluarga yang membutuhkan.
-              </p>
-
-              <a href="#donasi">
-                Bantu Sekarang →
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- PROGRAM 3 -->
-
-          <article class="program-card">
-
-            <div class="program-image forest-image"></div>
-
-            <div class="program-body">
-
-              <h3>
-                Pemulihan Lingkungan
-              </h3>
-
-              <p>
-                Mendukung pemulihan area terdampak
-                dan menjaga ruang hidup masyarakat
-                serta ekosistem.
-              </p>
-
-              <a href="#donasi">
-                Bantu Sekarang →
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- PROGRAM 4 -->
-
-          <article class="program-card">
-
-            <div class="program-image health-image"></div>
-
-            <div class="program-body">
-
-              <h3>
-                Kesehatan & Evakuasi
-              </h3>
-
-              <p>
-                Membantu akses layanan kesehatan,
-                perlindungan dari asap, dan kebutuhan
-                evakuasi darurat.
-              </p>
-
-              <a href="#donasi">
-                Bantu Sekarang →
-              </a>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= TENTANG ================= -->
-
-    <section
-      class="about"
-      id="tentang"
-    >
-
-      <div class="container about-grid">
-
-        <div>
-
-          <span class="eyebrow green">
-            TENTANG GERAKAN
-          </span>
-
-          <h2>
-            Bersama Membangun
-            Kepedulian yang Nyata
-          </h2>
-
-        </div>
-
-
-        <div class="about-copy">
-
-          <p>
-            Peduli Kalimantan hadir sebagai ruang
-            gotong royong untuk mempertemukan
-            kepedulian para donatur dengan masyarakat
-            yang sedang menghadapi dampak kebakaran.
-          </p>
-
-          <p>
-            Setiap bantuan, sekecil apa pun, dapat
-            menjadi dukungan berarti ketika dikumpulkan
-            dan disalurkan bersama.
-          </p>
-
-          <a
-            href="#donasi"
-            class="btn btn-green"
-          >
-            Salurkan Kepedulian Anda
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= DONASI ================= -->
-
-    <section
-      class="donation-section"
-      id="donasi"
-    >
-
-      <div class="container donation-grid">
-
-
-        <!-- BAGIAN KIRI -->
-
-        <div class="donation-intro">
-
-          <span class="eyebrow">
-            DONASI KEMANUSIAAN
-          </span>
-
-          <h2>
-            Ulurkan Tangan,
-            <br>
-            Hadirkan Harapan
-          </h2>
-
-          <p>
-            Setiap nominal yang Anda berikan sangat
-            berarti. Pilih nominal sesuai kemampuan
-            Anda dan lanjutkan ke tahap pembayaran.
-          </p>
-
-
-          <ul class="steps">
-
-            <li>
-              <span>✓</span>
-              Pilih nominal donasi sesuai kemampuan Anda
-            </li>
-
-            <li>
-              <span>✓</span>
-              Lanjutkan ke tahap pembayaran
-            </li>
-
-            <li>
-              <span>✓</span>
-              Upload bukti pembayaran
-            </li>
-
-            <li>
-              <span>✓</span>
-              Donasi dicatat untuk proses verifikasi
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        <!-- FORM -->
-
-        <div class="donation-form-card">
-
-          <h2>
-            Formulir Donasi
-          </h2>
-
-          <p class="form-subtitle">
-            Isi data di bawah ini untuk melanjutkan donasi.
-          </p>
-
-
-          <form id="donationForm">
-
-
-            <label for="programSelect">
-              Program Donasi
-            </label>
-
-            <select id="programSelect">
-
-              <option>
-                Peduli Kebakaran Kalimantan
-              </option>
-
-              <option>
-                Bantuan Anak & Keluarga
-              </option>
-
-              <option>
-                Kesehatan & Evakuasi
-              </option>
-
-              <option>
-                Pemulihan Lingkungan
-              </option>
-
-            </select>
-
-
-            <label for="donorName">
-              Nama Donatur
-            </label>
-
-            <input
-              id="donorName"
-              type="text"
-              placeholder="Masukkan nama Anda"
-              required
-            >
-
-
-            <label for="whatsapp">
-              Nomor WhatsApp
-            </label>
-
-            <input
-              id="whatsapp"
-              type="tel"
-              placeholder="Contoh: 081234567890"
-              required
-            >
-
-
-            <label>
-              Pilih Nominal Donasi
-            </label>
-
-
-            <div class="amount-grid">
-
-              <button
-                type="button"
-                class="amount-btn"
-                data-amount="25000"
-              >
-                Rp25.000
-              </button>
-
-              <button
-                type="button"
-                class="amount-btn"
-                data-amount="50000"
-              >
-                Rp50.000
-              </button>
-
-              <button
-                type="button"
-                class="amount-btn"
-                data-amount="100000"
-              >
-                Rp100.000
-              </button>
-
-              <button
-                type="button"
-                class="amount-btn"
-                data-amount="250000"
-              >
-                Rp250.000
-              </button>
-
-              <button
-                type="button"
-                class="amount-btn"
-                data-amount="500000"
-              >
-                Rp500.000
-              </button>
-
-              <button
-                type="button"
-                class="amount-btn"
-                data-amount="1000000"
-              >
-                Rp1.000.000
-              </button>
-
-            </div>
-
-
-            <label for="customAmount">
-              Atau Masukkan Nominal Lain
-            </label>
-
-            <div class="custom-input">
-
-              <span>
-                Rp
-              </span>
-
-              <input
-                id="customAmount"
-                type="number"
-                min="1000"
-                step="1000"
-                placeholder="25000"
-              >
-
-            </div>
-
-
-            <div class="selected-total">
-
-              <span>
-                Total donasi
-              </span>
-
-              <strong id="selectedAmount">
-                Rp25.000
-              </strong>
-
-            </div>
-
-
-            <button
-              type="submit"
-              class="btn btn-gold full"
-            >
-              Lanjut ke Pembayaran →
-            </button>
-
-
-            <p class="secure-note">
-              🔒 Pembayaran akan disiapkan pada tahap berikutnya.
-            </p>
-
-          </form>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ================= FOOTER ================= -->
-
-  <footer class="footer">
-
-    <div class="container footer-grid">
-
+    <div class="mini-stats">
 
       <div>
-
-        <h2>
-          Peduli Kalimantan
-        </h2>
-
-        <p>
-          Menyalurkan kepedulian, menguatkan sesama,
-          dan menghadirkan harapan bagi masyarakat
-          yang membutuhkan.
-        </p>
-
+        <b>1.248</b>
+        <span>Donatur</span>
       </div>
 
+      <div>
+        <b>18</b>
+        <span>Program</span>
+      </div>
+
+      <div>
+        <b>24</b>
+        <span>Daerah</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= STATISTIK ================= -->
+
+<section class="stats-grid" aria-label="Dampak program">
+
+  <div>
+    <b>Rp 1,2 M+</b>
+    <span>Total bantuan tersalurkan</span>
+  </div>
+
+  <div>
+    <b>8.500+</b>
+    <span>Penerima manfaat</span>
+  </div>
+
+  <div>
+    <b>120+</b>
+    <span>Relawan</span>
+  </div>
+
+  <div>
+    <b>24</b>
+    <span>Wilayah penyaluran</span>
+  </div>
+
+</section>
+
+
+<!-- ================= PROGRAM ================= -->
+
+<section id="program" class="section">
+
+  <div class="section-kicker">
+    PROGRAM KEMANUSIAAN
+  </div>
+
+  <h2>
+    Kepedulian yang<br>
+    Kami Salurkan
+  </h2>
+
+  <p class="lead">
+    Donasi Anda akan membantu berbagai program sosial dan kemanusiaan
+    sesuai kebutuhan masyarakat.
+  </p>
+
+
+  <div class="cards">
+
+
+    <!-- PROGRAM 1 -->
+
+    <article class="program">
+
+      <img
+        src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=85"
+        alt="Hutan dan lingkungan Kalimantan"
+      >
 
       <div>
 
         <h3>
-          Menu
+          Bantuan Kebakaran & Bencana
         </h3>
 
-        <a href="#beranda">
-          Beranda
-        </a>
-
-        <a href="#program">
-          Program
-        </a>
-
-        <a href="#tentang">
-          Tentang Kami
-        </a>
+        <p>
+          Bantuan darurat berupa makanan, air bersih, perlengkapan kebutuhan
+          dasar, dan dukungan bagi korban kebakaran serta bencana.
+        </p>
 
         <a href="#donasi">
-          Donasi
+          Bantu Sekarang →
         </a>
 
       </div>
 
+    </article>
+
+
+    <!-- PROGRAM 2 -->
+
+    <article class="program">
+
+      <img
+        src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=85"
+        alt="Anak-anak yang membutuhkan bantuan"
+      >
 
       <div>
 
         <h3>
-          Kontak
+          Peduli Anak & Keluarga
         </h3>
 
         <p>
-          WhatsApp: 08xx-xxxx-xxxx
+          Mendukung kebutuhan pendidikan, pangan, dan kehidupan anak-anak
+          serta keluarga yang membutuhkan.
         </p>
 
-        <p>
-          Email: info@pedulikaltim.id
-        </p>
-
-        <p>
-          Indonesia
-        </p>
+        <a href="#donasi">
+          Bantu Sekarang →
+        </a>
 
       </div>
 
+    </article>
+
+
+    <!-- PROGRAM 3 -->
+
+    <article class="program">
+
+      <img
+        src="https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=1200&q=85"
+        alt="Hutan untuk pelestarian lingkungan"
+      >
+
+      <div>
+
+        <h3>
+          Bantuan Sosial & Lingkungan
+        </h3>
+
+        <p>
+          Menjangkau masyarakat yang membutuhkan melalui sembako,
+          kebutuhan dasar, pemulihan, dan kepedulian terhadap lingkungan.
+        </p>
+
+        <a href="#donasi">
+          Bantu Sekarang →
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TENTANG ================= -->
+
+<section id="tentang" class="about">
+
+  <div class="about-inner">
+
+    <div class="section-kicker">
+      TENTANG YAYASAN
+    </div>
+
+    <h2>
+      Bersama Membangun
+      Kepedulian yang Nyata
+    </h2>
+
+    <p>
+      Yayasan Peduli Kemanusiaan berkomitmen untuk menjadi jembatan
+      antara para dermawan dan masyarakat yang membutuhkan bantuan.
+    </p>
+
+    <p>
+      Kami percaya bahwa kepedulian, sekecil apa pun, dapat menjadi
+      kekuatan besar ketika dilakukan bersama-sama.
+    </p>
+
+    <a class="btn green" href="#donasi">
+      Salurkan Kepedulian Anda
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================= DONASI ================= -->
+
+<section id="donasi" class="donate-section">
+
+
+  <!-- DONASI COPY -->
+
+  <div class="donate-copy">
+
+    <div class="section-kicker mint">
+      DONASI KEMANUSIAAN
+    </div>
+
+    <h2>
+      Ulurkan Tangan,
+      Hadirkan Harapan
+    </h2>
+
+    <p>
+      Setiap nominal yang Anda berikan sangat berarti. Bersama, kita
+      dapat membantu lebih banyak saudara yang sedang membutuhkan.
+    </p>
+
+
+    <ul>
+
+      <li>
+        ✓ Pilih nominal donasi sesuai kemampuan Anda
+      </li>
+
+      <li>
+        ✓ Lanjutkan pembayaran melalui QRIS
+      </li>
+
+      <li>
+        ✓ Upload bukti pembayaran
+      </li>
+
+      <li>
+        ✓ Donasi dicatat untuk proses verifikasi
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <!-- FORM DONASI -->
+
+  <div class="form-card" id="donasi-form">
+
+    <h2>
+      Formulir Donasi
+    </h2>
+
+    <p>
+      Isi data di bawah ini untuk melanjutkan donasi.
+    </p>
+
+
+    <form id="donationForm">
+
+
+      <label>
+
+        Program Donasi
+
+        <select id="programSelect">
+
+          <option>
+            Donasi Peduli Kemanusiaan
+          </option>
+
+          <option>
+            Bantuan Kebakaran & Bencana
+          </option>
+
+          <option>
+            Peduli Anak & Keluarga
+          </option>
+
+          <option>
+            Bantuan Sosial & Lingkungan
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label>
+
+        Nama Donatur
+
+        <input
+          id="name"
+          required
+          placeholder="Masukkan nama Anda"
+        >
+
+      </label>
+
+
+      <label>
+
+        Nomor WhatsApp
+
+        <input
+          id="phone"
+          required
+          inputmode="tel"
+          placeholder="Contoh: 081234567890"
+        >
+
+      </label>
+
+
+      <label>
+
+        Pilih Nominal Donasi
+
+        <div class="amounts">
+
+          <button type="button" data-amount="25000">
+            Rp25.000
+          </button>
+
+          <button type="button" data-amount="50000">
+            Rp50.000
+          </button>
+
+          <button type="button" data-amount="100000">
+            Rp100.000
+          </button>
+
+          <button type="button" data-amount="250000">
+            Rp250.000
+          </button>
+
+          <button type="button" data-amount="500000">
+            Rp500.000
+          </button>
+
+          <button type="button" data-amount="1000000">
+            Rp1.000.000
+          </button>
+
+        </div>
+
+      </label>
+
+
+      <label>
+
+        Atau Masukkan Nominal Lain
+
+        <div class="money">
+
+          <span>Rp</span>
+
+          <input
+            id="amount"
+            type="number"
+            min="1000"
+            value="25000"
+            required
+          >
+
+        </div>
+
+      </label>
+
+
+      <button
+        class="btn full"
+        type="submit"
+      >
+        Lanjut ke Pembayaran →
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <!-- ================= PAYMENT ================= -->
+
+  <div
+    class="payment-card hidden"
+    id="paymentStep"
+  >
+
+    <button
+      class="back"
+      id="backToForm"
+    >
+      ← Kembali
+    </button>
+
+
+    <div class="step">
+      LANGKAH 2 DARI 3
     </div>
 
 
-    <div class="container copyright">
+    <h2>
+      Scan QRIS Kalimantan Peduli
+    </h2>
 
-      © 2026 Peduli Kalimantan.
-      Semua hak dilindungi.
+
+    <p>
+      Silakan lakukan pembayaran sesuai nominal donasi Anda.
+    </p>
+
+
+    <!-- QRIS PLACEHOLDER -->
+
+    <div class="qris-placeholder">
+
+      <div class="qr-icon">
+        ▦
+      </div>
+
+      <strong>
+        QRIS AKAN DITEMPATKAN DI SINI
+      </strong>
+
+      <span>
+        Siapkan gambar QRIS nanti, lalu ganti placeholder ini.
+      </span>
 
     </div>
 
-  </footer>
+
+    <div class="pay-summary">
+
+      <span>
+        Nominal donasi
+      </span>
+
+      <b id="summaryAmount">
+        Rp25.000
+      </b>
+
+    </div>
 
 
-  <script src="script.js"></script>
+    <p class="small">
+
+      Setelah pembayaran berhasil, upload bukti pembayaran
+      untuk proses konfirmasi.
+
+    </p>
+
+
+    <label class="upload">
+
+      Upload Bukti Pembayaran
+
+      <input
+        id="proof"
+        type="file"
+        accept="image/*,.pdf"
+      >
+
+      <span id="fileName">
+        Pilih file bukti pembayaran
+      </span>
+
+    </label>
+
+
+    <button
+      class="btn full yellow"
+      id="confirmBtn"
+      type="button"
+    >
+      ♥ Kirim Konfirmasi Donasi
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div>
+
+    <h2>
+      Yayasan Peduli Kemanusiaan
+    </h2>
+
+    <p>
+      Menyalurkan kepedulian, menguatkan sesama, dan menghadirkan
+      harapan bagi masyarakat yang membutuhkan.
+    </p>
+
+  </div>
+
+
+  <div>
+
+    <h3>
+      Menu
+    </h3>
+
+    <a href="#beranda">
+      Beranda
+    </a>
+
+    <a href="#program">
+      Program
+    </a>
+
+    <a href="#tentang">
+      Tentang Kami
+    </a>
+
+    <a href="#donasi">
+      Donasi
+    </a>
+
+  </div>
+
+
+  <div>
+
+    <h3>
+      Kontak
+    </h3>
+
+    <p>
+      WhatsApp: 08xx-xxxx-xxxx
+    </p>
+
+    <p>
+      Email: info@yayasananda.com
+    </p>
+
+    <p>
+      Indonesia
+    </p>
+
+  </div>
+
+
+  <div class="copy">
+
+    © 2026 Yayasan Peduli Kemanusiaan.
+    Semua hak dilindungi.
+
+  </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>

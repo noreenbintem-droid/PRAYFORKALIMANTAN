@@ -1,508 +1,158 @@
-/* =====================================================
-   KALIMANTAN PEDULI
-   SCRIPT DONASI
-===================================================== */
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* =========================
+     TAHUN OTOMATIS
+  ========================= */
+
+  const year = document.getElementById("year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
 
-/* =====================================================
-   NOMOR WHATSAPP
-===================================================== */
+  /* =========================
+     KONFIRMASI DONASI
+  ========================= */
 
-/*
-  GANTI NOMOR INI NANTI DENGAN NOMOR WHATSAPP YAYASAN.
+  const confirmButton =
+    document.getElementById("confirmDonation");
 
-  Format:
-  628xxxxxxxxxx
+  if (confirmButton) {
 
-  Jangan menggunakan:
-  +62
-  spasi
-  tanda -
-*/
+    confirmButton.addEventListener("click", function () {
 
-const WHATSAPP_NUMBER = "6280000000000";
+      alert(
+        "Terima kasih atas kepedulian Anda ❤️\n\n" +
+        "Silakan pastikan bukti pembayaran sudah dipilih."
+      );
 
+    });
 
-/* =====================================================
-   ELEMENT WEBSITE
-===================================================== */
-
-const form = document.getElementById("donationForm");
-
-const payment = document.getElementById("paymentStep");
-
-const formCard = document.getElementById("donasi-form");
-
-const amount = document.getElementById("amount");
-
-const summary = document.getElementById("summaryAmount");
-
-const nameInput = document.getElementById("name");
-
-const phoneInput = document.getElementById("phone");
-
-const program = document.getElementById("programSelect");
-
-const proof = document.getElementById("proof");
-
-const fileName = document.getElementById("fileName");
+  }
 
 
-/* =====================================================
-   FORMAT RUPIAH
-===================================================== */
+  /* =========================
+     FILE UPLOAD
+  ========================= */
 
-const rupiah = (value) => {
+  const fileInput =
+    document.querySelector(".upload-box input");
 
-  return new Intl.NumberFormat(
-    "id-ID",
-    {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0
-    }
-  )
-  .format(Number(value))
-  .replace("IDR", "Rp");
+  const uploadBox =
+    document.querySelector(".upload-box");
 
-};
+  if (fileInput && uploadBox) {
 
+    fileInput.addEventListener("change", function () {
 
-/* =====================================================
-   NOMINAL DEFAULT
-===================================================== */
+      if (fileInput.files.length > 0) {
 
-const defaultAmountButton =
-  document.querySelector(
-    '.amounts button[data-amount="25000"]'
-  );
+        const fileName =
+          fileInput.files[0].name;
 
+        uploadBox.querySelector("strong")
+          .textContent = "✓ Bukti pembayaran dipilih";
 
-if(defaultAmountButton){
-
-  defaultAmountButton.classList.add("active");
-
-}
-
-
-/* =====================================================
-   PILIH NOMINAL DONASI
-===================================================== */
-
-document
-  .querySelectorAll(".amounts button")
-  .forEach((button) => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        /*
-          Hapus status aktif dari
-          semua tombol.
-        */
-
-        document
-          .querySelectorAll(".amounts button")
-          .forEach((item) => {
-
-            item.classList.remove("active");
-
-          });
-
-
-        /*
-          Aktifkan tombol yang dipilih.
-        */
-
-        button.classList.add("active");
-
-
-        /*
-          Masukkan nominal
-          ke input nominal.
-        */
-
-        amount.value = button.dataset.amount;
+        uploadBox.querySelector("span")
+          .textContent = fileName;
 
       }
 
+    });
+
+  }
+
+
+  /* =========================
+     ANIMASI SAAT SCROLL
+  ========================= */
+
+  const animatedElements =
+    document.querySelectorAll(
+      ".stat-box, .program-card, .update-card"
     );
+
+  const observer =
+    new IntersectionObserver(
+      function (entries) {
+
+        entries.forEach(function (entry) {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+  animatedElements.forEach(function (element) {
+
+    element.style.opacity = "0";
+    element.style.transform = "translateY(25px)";
+    element.style.transition =
+      "opacity 0.7s ease, transform 0.7s ease";
+
+    observer.observe(element);
 
   });
 
 
-/* =====================================================
-   JIKA INPUT NOMINAL DIUBAH MANUAL
-===================================================== */
+  /* =========================
+     STYLE ANIMASI
+  ========================= */
 
-amount.addEventListener(
-  "input",
-  () => {
+  const style =
+    document.createElement("style");
 
-    /*
-      Kalau user mengetik nominal sendiri,
-      hilangkan pilihan tombol sebelumnya.
-    */
+  style.innerHTML = `
+    .stat-box.show,
+    .program-card.show,
+    .update-card.show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  `;
 
-    document
-      .querySelectorAll(".amounts button")
-      .forEach((button) => {
+  document.head.appendChild(style);
 
-        if(button.dataset.amount !== amount.value){
 
-          button.classList.remove("active");
+  /* =========================
+     SMOOTH BUTTON
+  ========================= */
+
+  document.querySelectorAll('a[href^="#"]')
+    .forEach(function (link) {
+
+      link.addEventListener("click", function (event) {
+
+        const targetId =
+          link.getAttribute("href");
+
+        const target =
+          document.querySelector(targetId);
+
+        if (target) {
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
 
         }
 
       });
 
+    });
 
-    /*
-      Kalau nominal sama dengan salah satu tombol,
-      aktifkan tombol tersebut.
-    */
-
-    const selected =
-      document.querySelector(
-        `.amounts button[data-amount="${amount.value}"]`
-      );
-
-
-    if(selected){
-
-      selected.classList.add("active");
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   SUBMIT FORM DONASI
-===================================================== */
-
-form.addEventListener(
-  "submit",
-  (event) => {
-
-    event.preventDefault();
-
-
-    /*
-      Validasi nominal.
-    */
-
-    if(Number(amount.value) < 1000){
-
-      alert(
-        "Nominal minimum donasi adalah Rp1.000."
-      );
-
-      return;
-
-    }
-
-
-    /*
-      Pastikan nama diisi.
-    */
-
-    if(nameInput.value.trim() === ""){
-
-      alert(
-        "Silakan masukkan nama donatur."
-      );
-
-      nameInput.focus();
-
-      return;
-
-    }
-
-
-    /*
-      Pastikan nomor WhatsApp diisi.
-    */
-
-    if(phoneInput.value.trim() === ""){
-
-      alert(
-        "Silakan masukkan nomor WhatsApp."
-      );
-
-      phoneInput.focus();
-
-      return;
-
-    }
-
-
-    /*
-      Tampilkan nominal
-      di halaman pembayaran.
-    */
-
-    summary.textContent =
-      rupiah(amount.value);
-
-
-    /*
-      Sembunyikan form.
-    */
-
-    formCard.classList.add(
-      "hidden"
-    );
-
-
-    /*
-      Tampilkan pembayaran.
-    */
-
-    payment.classList.remove(
-      "hidden"
-    );
-
-
-    /*
-      Scroll otomatis ke
-      bagian pembayaran.
-    */
-
-    setTimeout(
-      () => {
-
-        payment.scrollIntoView(
-          {
-            behavior:"smooth",
-            block:"start"
-          }
-        );
-
-      },
-      50
-    );
-
-  }
-);
-
-
-/* =====================================================
-   KEMBALI KE FORM
-===================================================== */
-
-document
-  .getElementById("backToForm")
-  .addEventListener(
-    "click",
-    () => {
-
-      /*
-        Sembunyikan halaman pembayaran.
-      */
-
-      payment.classList.add(
-        "hidden"
-      );
-
-
-      /*
-        Tampilkan kembali form.
-      */
-
-      formCard.classList.remove(
-        "hidden"
-      );
-
-
-      /*
-        Scroll kembali ke form.
-      */
-
-      setTimeout(
-        () => {
-
-          formCard.scrollIntoView(
-            {
-              behavior:"smooth",
-              block:"start"
-            }
-          );
-
-        },
-        50
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   UPLOAD BUKTI PEMBAYARAN
-===================================================== */
-
-proof.addEventListener(
-  "change",
-  () => {
-
-    if(proof.files.length > 0){
-
-      fileName.textContent =
-        proof.files[0].name;
-
-    }else{
-
-      fileName.textContent =
-        "Pilih file bukti pembayaran";
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   KONFIRMASI DONASI
-===================================================== */
-
-document
-  .getElementById("confirmBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      /*
-        Pastikan bukti pembayaran
-        sudah dipilih.
-      */
-
-      if(!proof.files.length){
-
-        alert(
-          "Silakan upload bukti pembayaran terlebih dahulu."
-        );
-
-        return;
-
-      }
-
-
-      /*
-        Buat pesan WhatsApp.
-      */
-
-      const message =
-
-`Halo Kalimantan Peduli, saya ingin mengonfirmasi donasi.
-
-Nama: ${nameInput.value}
-
-WhatsApp: ${phoneInput.value}
-
-Program: ${program.value}
-
-Nominal: ${rupiah(amount.value)}
-
-Bukti pembayaran: ${proof.files[0].name}
-
-Terima kasih.`;
-
-
-      /*
-        Buka WhatsApp.
-      */
-
-      window.open(
-
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-
-        "_blank"
-
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   ANIMASI SCROLL SEDERHANA
-===================================================== */
-
-const sections =
-  document.querySelectorAll(
-    "section"
-  );
-
-
-/*
-  Tambahkan class saat
-  section terlihat.
-*/
-
-const observer =
-  new IntersectionObserver(
-    (entries) => {
-
-      entries.forEach(
-        (entry) => {
-
-          if(entry.isIntersecting){
-
-            entry.target.classList.add(
-              "visible"
-            );
-
-          }
-
-        }
-      );
-
-    },
-    {
-      threshold:.08
-    }
-  );
-
-
-sections.forEach(
-  (section) => {
-
-    observer.observe(
-      section
-    );
-
-  }
-);
-
-
-/* =====================================================
-   CEGAH LINK # BERLARI KE ATAS
-===================================================== */
-
-document
-  .querySelectorAll('a[href="#"]')
-  .forEach(
-    (link) => {
-
-      link.addEventListener(
-        "click",
-        (event) => {
-
-          event.preventDefault();
-
-        }
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   SELESAI
-===================================================== */
-
-console.log(
-  "Kalimantan Peduli berhasil dimuat."
-);
+});

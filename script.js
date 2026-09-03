@@ -1,158 +1,134 @@
-document.addEventListener("DOMContentLoaded", function () {
+/* =========================================
+   SCROLL ANIMATION
+========================================= */
 
-  /* =========================
-     TAHUN OTOMATIS
-  ========================= */
+const animatedElements = document.querySelectorAll(
+    ".program-card, .stat-card, .about-content, .about-card, .donation-card, .quote-card"
+);
 
-  const year = document.getElementById("year");
+const observer = new IntersectionObserver(
+    (entries) => {
 
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+        entries.forEach((entry) => {
 
+            if (entry.isIntersecting) {
 
-  /* =========================
-     KONFIRMASI DONASI
-  ========================= */
+                entry.target.classList.add("show");
 
-  const confirmButton =
-    document.getElementById("confirmDonation");
+                observer.unobserve(entry.target);
 
-  if (confirmButton) {
-
-    confirmButton.addEventListener("click", function () {
-
-      alert(
-        "Terima kasih atas kepedulian Anda ❤️\n\n" +
-        "Silakan pastikan bukti pembayaran sudah dipilih."
-      );
-
-    });
-
-  }
-
-
-  /* =========================
-     FILE UPLOAD
-  ========================= */
-
-  const fileInput =
-    document.querySelector(".upload-box input");
-
-  const uploadBox =
-    document.querySelector(".upload-box");
-
-  if (fileInput && uploadBox) {
-
-    fileInput.addEventListener("change", function () {
-
-      if (fileInput.files.length > 0) {
-
-        const fileName =
-          fileInput.files[0].name;
-
-        uploadBox.querySelector("strong")
-          .textContent = "✓ Bukti pembayaran dipilih";
-
-        uploadBox.querySelector("span")
-          .textContent = fileName;
-
-      }
-
-    });
-
-  }
-
-
-  /* =========================
-     ANIMASI SAAT SCROLL
-  ========================= */
-
-  const animatedElements =
-    document.querySelectorAll(
-      ".stat-box, .program-card, .update-card"
-    );
-
-  const observer =
-    new IntersectionObserver(
-      function (entries) {
-
-        entries.forEach(function (entry) {
-
-          if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
-          }
+            }
 
         });
 
-      },
-      {
+    },
+    {
         threshold: 0.12
-      }
-    );
-
-
-  animatedElements.forEach(function (element) {
-
-    element.style.opacity = "0";
-    element.style.transform = "translateY(25px)";
-    element.style.transition =
-      "opacity 0.7s ease, transform 0.7s ease";
-
-    observer.observe(element);
-
-  });
-
-
-  /* =========================
-     STYLE ANIMASI
-  ========================= */
-
-  const style =
-    document.createElement("style");
-
-  style.innerHTML = `
-    .stat-box.show,
-    .program-card.show,
-    .update-card.show {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
     }
-  `;
-
-  document.head.appendChild(style);
+);
 
 
-  /* =========================
-     SMOOTH BUTTON
-  ========================= */
+animatedElements.forEach((element) => {
+    observer.observe(element);
+});
 
-  document.querySelectorAll('a[href^="#"]')
-    .forEach(function (link) {
 
-      link.addEventListener("click", function (event) {
+/* =========================================
+   PROGRESS BAR
+========================================= */
 
-        const targetId =
-          link.getAttribute("href");
+const progressBars = document.querySelectorAll(".progress-bar");
 
-        const target =
-          document.querySelector(targetId);
+const progressObserver = new IntersectionObserver(
+    (entries) => {
 
-        if (target) {
+        entries.forEach((entry) => {
 
-          event.preventDefault();
+            if (entry.isIntersecting) {
 
-          target.scrollIntoView({
+                const progress = entry.target.dataset.progress || 0;
+
+                entry.target.style.width = progress + "%";
+
+                progressObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.4
+    }
+);
+
+
+progressBars.forEach((bar) => {
+    progressObserver.observe(bar);
+});
+
+
+/* =========================================
+   HEADER SHADOW SAAT SCROLL
+========================================= */
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 20) {
+
+        header.style.boxShadow =
+            "0 10px 30px rgba(4,45,35,.08)";
+
+    } else {
+
+        header.style.boxShadow = "none";
+
+    }
+
+});
+
+
+/* =========================================
+   SMOOTH SCROLL
+========================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+
+    link.addEventListener("click", function (event) {
+
+        const targetId = this.getAttribute("href");
+
+        if (targetId === "#") return;
+
+        const target = document.querySelector(targetId);
+
+        if (!target) return;
+
+        event.preventDefault();
+
+        target.scrollIntoView({
             behavior: "smooth",
             block: "start"
-          });
-
-        }
-
-      });
+        });
 
     });
 
 });
+
+
+/* =========================================
+   TAHUN OTOMATIS
+========================================= */
+
+const yearElement = document.querySelector(".footer-bottom");
+
+if (yearElement) {
+
+    const currentYear = new Date().getFullYear();
+
+    yearElement.innerHTML =
+        `© ${currentYear} Yayasan Peduli Kalimantan. Semua hak dilindungi.`;
+
+}

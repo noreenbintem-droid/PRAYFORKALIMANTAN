@@ -1,296 +1,508 @@
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    /* ===============================
-       ELEMENT
-    =============================== */
-
-    const amountButtons =
-      document.querySelectorAll(
-        ".amount-btn"
-      );
-
-    const customAmount =
-      document.getElementById(
-        "customAmount"
-      );
-
-    const selectedAmount =
-      document.getElementById(
-        "selectedAmount"
-      );
-
-    const donationForm =
-      document.getElementById(
-        "donationForm"
-      );
+/* =====================================================
+   KALIMANTAN PEDULI
+   SCRIPT DONASI
+===================================================== */
 
 
-    /* ===============================
-       NOMINAL AWAL
-    =============================== */
+/* =====================================================
+   NOMOR WHATSAPP
+===================================================== */
 
-    let currentAmount = 25000;
+/*
+  GANTI NOMOR INI NANTI DENGAN NOMOR WHATSAPP YAYASAN.
+
+  Format:
+  628xxxxxxxxxx
+
+  Jangan menggunakan:
+  +62
+  spasi
+  tanda -
+*/
+
+const WHATSAPP_NUMBER = "6280000000000";
 
 
-    /* ===============================
-       FORMAT RUPIAH
-    =============================== */
+/* =====================================================
+   ELEMENT WEBSITE
+===================================================== */
 
-    function formatRupiah(number) {
+const form = document.getElementById("donationForm");
 
-      return new Intl.NumberFormat(
-        "id-ID"
-      ).format(number);
+const payment = document.getElementById("paymentStep");
 
+const formCard = document.getElementById("donasi-form");
+
+const amount = document.getElementById("amount");
+
+const summary = document.getElementById("summaryAmount");
+
+const nameInput = document.getElementById("name");
+
+const phoneInput = document.getElementById("phone");
+
+const program = document.getElementById("programSelect");
+
+const proof = document.getElementById("proof");
+
+const fileName = document.getElementById("fileName");
+
+
+/* =====================================================
+   FORMAT RUPIAH
+===================================================== */
+
+const rupiah = (value) => {
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0
     }
+  )
+  .format(Number(value))
+  .replace("IDR", "Rp");
+
+};
 
 
-    /* ===============================
-       UPDATE NOMINAL
-    =============================== */
+/* =====================================================
+   NOMINAL DEFAULT
+===================================================== */
 
-    function updateAmount(amount) {
-
-      const numericAmount =
-        Number(amount);
-
-      if (
-        !numericAmount ||
-        numericAmount < 1000
-      ) {
-        return;
-      }
-
-      currentAmount =
-        numericAmount;
+const defaultAmountButton =
+  document.querySelector(
+    '.amounts button[data-amount="25000"]'
+  );
 
 
-      selectedAmount.textContent =
-        `Rp${formatRupiah(
-          currentAmount
-        )}`;
+if(defaultAmountButton){
+
+  defaultAmountButton.classList.add("active");
+
+}
 
 
-      amountButtons.forEach(
-        (button) => {
+/* =====================================================
+   PILIH NOMINAL DONASI
+===================================================== */
 
-          const buttonAmount =
-            Number(
-              button.dataset.amount
-            );
+document
+  .querySelectorAll(".amounts button")
+  .forEach((button) => {
 
-          button.classList.toggle(
-            "active",
-            buttonAmount ===
-              currentAmount
-          );
-
-        }
-      );
-
-    }
-
-
-    /* ===============================
-       DEFAULT
-    =============================== */
-
-    updateAmount(
-      currentAmount
-    );
-
-
-    /* ===============================
-       TOMBOL NOMINAL
-    =============================== */
-
-    amountButtons.forEach(
-      (button) => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            customAmount.value =
-              "";
-
-            updateAmount(
-              button.dataset.amount
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    /* ===============================
-       NOMINAL MANUAL
-    =============================== */
-
-    customAmount.addEventListener(
-      "input",
+    button.addEventListener(
+      "click",
       () => {
 
-        if (
-          customAmount.value
-        ) {
+        /*
+          Hapus status aktif dari
+          semua tombol.
+        */
 
-          updateAmount(
-            customAmount.value
-          );
+        document
+          .querySelectorAll(".amounts button")
+          .forEach((item) => {
 
-        }
+            item.classList.remove("active");
 
-      }
-    );
-
-
-    /* ===============================
-       SUBMIT FORM
-    =============================== */
-
-    donationForm.addEventListener(
-      "submit",
-      (event) => {
-
-        event.preventDefault();
-
-
-        const donorName =
-          document
-            .getElementById(
-              "donorName"
-            )
-            .value
-            .trim();
-
-
-        const whatsapp =
-          document
-            .getElementById(
-              "whatsapp"
-            )
-            .value
-            .trim();
-
-
-        const program =
-          document
-            .getElementById(
-              "programSelect"
-            )
-            .value;
-
-
-        /* VALIDASI */
-
-        if (
-          !donorName ||
-          !whatsapp
-        ) {
-
-          alert(
-            "Silakan lengkapi nama dan nomor WhatsApp terlebih dahulu."
-          );
-
-          return;
-
-        }
+          });
 
 
         /*
-
-          UNTUK SEKARANG BELUM ADA QRIS.
-
-          Nanti bagian ini akan kita ganti
-          dengan halaman pembayaran QRIS.
-
+          Aktifkan tombol yang dipilih.
         */
 
-        alert(
+        button.classList.add("active");
 
-          "Data donasi siap diproses.\n\n" +
 
-          "Nama: " +
-          donorName +
+        /*
+          Masukkan nominal
+          ke input nominal.
+        */
 
-          "\nProgram: " +
-          program +
-
-          "\nNominal: Rp" +
-          formatRupiah(
-            currentAmount
-          ) +
-
-          "\n\n" +
-
-          "Tahap QRIS akan kita pasang setelah bagian ini selesai."
-
-        );
+        amount.value = button.dataset.amount;
 
       }
+
+    );
+
+  });
+
+
+/* =====================================================
+   JIKA INPUT NOMINAL DIUBAH MANUAL
+===================================================== */
+
+amount.addEventListener(
+  "input",
+  () => {
+
+    /*
+      Kalau user mengetik nominal sendiri,
+      hilangkan pilihan tombol sebelumnya.
+    */
+
+    document
+      .querySelectorAll(".amounts button")
+      .forEach((button) => {
+
+        if(button.dataset.amount !== amount.value){
+
+          button.classList.remove("active");
+
+        }
+
+      });
+
+
+    /*
+      Kalau nominal sama dengan salah satu tombol,
+      aktifkan tombol tersebut.
+    */
+
+    const selected =
+      document.querySelector(
+        `.amounts button[data-amount="${amount.value}"]`
+      );
+
+
+    if(selected){
+
+      selected.classList.add("active");
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SUBMIT FORM DONASI
+===================================================== */
+
+form.addEventListener(
+  "submit",
+  (event) => {
+
+    event.preventDefault();
+
+
+    /*
+      Validasi nominal.
+    */
+
+    if(Number(amount.value) < 1000){
+
+      alert(
+        "Nominal minimum donasi adalah Rp1.000."
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Pastikan nama diisi.
+    */
+
+    if(nameInput.value.trim() === ""){
+
+      alert(
+        "Silakan masukkan nama donatur."
+      );
+
+      nameInput.focus();
+
+      return;
+
+    }
+
+
+    /*
+      Pastikan nomor WhatsApp diisi.
+    */
+
+    if(phoneInput.value.trim() === ""){
+
+      alert(
+        "Silakan masukkan nomor WhatsApp."
+      );
+
+      phoneInput.focus();
+
+      return;
+
+    }
+
+
+    /*
+      Tampilkan nominal
+      di halaman pembayaran.
+    */
+
+    summary.textContent =
+      rupiah(amount.value);
+
+
+    /*
+      Sembunyikan form.
+    */
+
+    formCard.classList.add(
+      "hidden"
     );
 
 
-    /* ===============================
-       SMOOTH SCROLL
-    =============================== */
+    /*
+      Tampilkan pembayaran.
+    */
 
-    document
-      .querySelectorAll(
-        'a[href^="#"]'
-      )
-      .forEach(
-        (link) => {
-
-          link.addEventListener(
-            "click",
-            (event) => {
-
-              const targetId =
-                link.getAttribute(
-                  "href"
-                );
+    payment.classList.remove(
+      "hidden"
+    );
 
 
-              if (
-                !targetId ||
-                targetId === "#"
-              ) {
-                return;
-              }
+    /*
+      Scroll otomatis ke
+      bagian pembayaran.
+    */
+
+    setTimeout(
+      () => {
+
+        payment.scrollIntoView(
+          {
+            behavior:"smooth",
+            block:"start"
+          }
+        );
+
+      },
+      50
+    );
+
+  }
+);
 
 
-              const target =
-                document.querySelector(
-                  targetId
-                );
+/* =====================================================
+   KEMBALI KE FORM
+===================================================== */
+
+document
+  .getElementById("backToForm")
+  .addEventListener(
+    "click",
+    () => {
+
+      /*
+        Sembunyikan halaman pembayaran.
+      */
+
+      payment.classList.add(
+        "hidden"
+      );
 
 
-              if (!target) {
-                return;
-              }
+      /*
+        Tampilkan kembali form.
+      */
+
+      formCard.classList.remove(
+        "hidden"
+      );
 
 
-              event.preventDefault();
+      /*
+        Scroll kembali ke form.
+      */
 
+      setTimeout(
+        () => {
 
-              target.scrollIntoView(
-                {
-                  behavior: "smooth",
-                  block: "start"
-                }
-              );
-
+          formCard.scrollIntoView(
+            {
+              behavior:"smooth",
+              block:"start"
             }
           );
+
+        },
+        50
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   UPLOAD BUKTI PEMBAYARAN
+===================================================== */
+
+proof.addEventListener(
+  "change",
+  () => {
+
+    if(proof.files.length > 0){
+
+      fileName.textContent =
+        proof.files[0].name;
+
+    }else{
+
+      fileName.textContent =
+        "Pilih file bukti pembayaran";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   KONFIRMASI DONASI
+===================================================== */
+
+document
+  .getElementById("confirmBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      /*
+        Pastikan bukti pembayaran
+        sudah dipilih.
+      */
+
+      if(!proof.files.length){
+
+        alert(
+          "Silakan upload bukti pembayaran terlebih dahulu."
+        );
+
+        return;
+
+      }
+
+
+      /*
+        Buat pesan WhatsApp.
+      */
+
+      const message =
+
+`Halo Kalimantan Peduli, saya ingin mengonfirmasi donasi.
+
+Nama: ${nameInput.value}
+
+WhatsApp: ${phoneInput.value}
+
+Program: ${program.value}
+
+Nominal: ${rupiah(amount.value)}
+
+Bukti pembayaran: ${proof.files[0].name}
+
+Terima kasih.`;
+
+
+      /*
+        Buka WhatsApp.
+      */
+
+      window.open(
+
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+
+        "_blank"
+
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   ANIMASI SCROLL SEDERHANA
+===================================================== */
+
+const sections =
+  document.querySelectorAll(
+    "section"
+  );
+
+
+/*
+  Tambahkan class saat
+  section terlihat.
+*/
+
+const observer =
+  new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach(
+        (entry) => {
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+          }
 
         }
       );
 
+    },
+    {
+      threshold:.08
+    }
+  );
+
+
+sections.forEach(
+  (section) => {
+
+    observer.observe(
+      section
+    );
+
   }
+);
+
+
+/* =====================================================
+   CEGAH LINK # BERLARI KE ATAS
+===================================================== */
+
+document
+  .querySelectorAll('a[href="#"]')
+  .forEach(
+    (link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          event.preventDefault();
+
+        }
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   SELESAI
+===================================================== */
+
+console.log(
+  "Kalimantan Peduli berhasil dimuat."
 );
